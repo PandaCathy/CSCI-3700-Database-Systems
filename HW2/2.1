@@ -1,0 +1,58 @@
+import java.sql.*;
+import java.util.Properties;
+import java.util.Scanner;
+
+class updateS{
+	public static void main(String args[]){
+		
+		// Create a Scanner object
+		Scanner in = new Scanner(System.in);
+		System.out.print("Please enter the name of the instructor: ");
+		// Read user input
+		String instructorName = in.nextLine();
+		System.out.print("Please enter the salary of the instructor: ");
+		// Output user input
+		int newSalary = in.nextInt();
+		
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+			Properties p = new Properties();
+			// Login infomation to access the database
+			p.put("user", "stu26");
+			p.put("password", "Mystu2626");
+			// Connecting to the database
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/stu26_db",p);
+		 
+		PreparedStatement pstmt1 = con.prepareStatement ("select salary from instructor where name = ?");
+		// Set the ? as user input
+		pstmt1.setString(1,instructorName);
+		// Get the result from the database
+	    ResultSet rs = pstmt1.executeQuery();
+	    while(rs.next()){
+			// Get the salary input from user
+			int originalSalary = rs.getInt("salary");
+				PreparedStatement pstmt = con.prepareStatement ("update instructor set salary = ? where name = ?");
+				// Check if the salary from the user is within 5% of the oringal salary from the database
+				if (newSalary > originalSalary + newSalary*0.05 || newSalary < originalSalary - newSalary*0.05)
+					System.out.print("ERROR OCCURED : You can only increase 5% or decrease 5% of the salary. ");
+				else
+					// Set and change the salary of the database
+					pstmt.setInt(1, newSalary);
+					pstmt.setString(2, instructorName);
+      
+				int x = pstmt.executeUpdate();
+				if (x > 0)
+					System.out.print("Salary Successfully Updated.");
+				else
+					System.out.print("ERROR OCCURED : Wrong instrustor name.");
+	    }
+		rs.close();
+     
+		con.close();
+			
+		}
+		// Error
+		catch(Exception e){
+			System.out.println(e);}
+	}
+}
