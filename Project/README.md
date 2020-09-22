@@ -1,4 +1,11 @@
-# [Start Bootstrap - Modern Business](https://startbootstrap.com/template-overviews/modern-business/)
+#IMDB project
+This is a group project with my classmate.
+
+**Please do use my example for your work or your company work.**
+
+This is a website that connect to the local database. Search the movie name and it will show the detail of the movie.
+
+## [Start Bootstrap - Modern Business](https://startbootstrap.com/template-overviews/modern-business/)
 
 [Modern Business](http://startbootstrap.com/template-overviews/modern-business/) is a multipurpose, full website template for [Bootstrap](http://getbootstrap.com/) created by [Start Bootstrap](http://startbootstrap.com/). This template includes 17 unique HTML pages and a working PHP contact form.
 
