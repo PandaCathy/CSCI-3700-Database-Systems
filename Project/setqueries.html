@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="Imdb" content="">
+  <meta name="TEAM 7" content="">
+
+  <title>IMDb SEARCH - jQuery movies </title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="project/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/modern-project.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">HOME</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="setqueries.html">Set Queries</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Blog
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+              <a class="dropdown-item" href="section-1.html">Section 1</a>
+              <a class="dropdown-item" href="section-2.html">Section 2</a>
+              <a class="dropdown-item" href="final.html">Final Summary</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">SQL Queries
+      <!-- <small>Subheading</small> -->
+    </h1>
+
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="index.html">Home</a>
+      </li>
+      <li class="breadcrumb-item active">SQL Queries</li>
+    </ol>
+
+    <!-- Image Header -->
+    <img class="img-fluid rounded mb-4" src="http://placehold.it/1200x300" alt="">
+
+    <!-- Marketing Icons Section -->
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100">
+          <h4 class="card-header">SQL Queries 1</h4>
+          <img class="SQL Queries 1" src="a.jpg" alt="SQL Queries 1">
+          <div class="card-body">
+            <p class="card-text">Show the information of movies (Title, Region, Language, Year, Rating, Votes) which have average rating greater than 7 and number of votes greater than 1000.</p>
+            <p class="card-text">
+              Statement:
+              </br>SELECT tb.primaryTitle, ta.region, ta.language, tb.startYear, tr.averageRating,	tr.numVotes 
+              </br>FROM Title_basics tb NATURAL JOIN Title_akas ta NATURAL JOIN Title_ratings tr 
+              </br>WHERE averageRating>7 AND numVotes>1000 
+              </br>LIMIT 10;</p>
+            </div>
+          </div>
+        </div>
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100">
+            <h4 class="card-header">SQL Queries 2</h4>
+            <img class="SQL Queries 2" src="b.jpg" alt="SQL Queries 2">
+            <div class="card-body">
+              <p class="card-text">b.	Show the names of persons who have directed more than 10 movies.</p>
+              <p class="card-text">
+                Statement:
+                </br>SELECT nb.primaryName 
+                </br>FROM Name_basic nb INNER JOIN Title_crew tc ON nb.tconst=tc.directors 
+                </br>WHERE nb.knownForTitle LIKE '%,%,%,%,%,%,%,%,%,%'
+                </br>LIMIT 10;</p>
+              </div>
+            </div>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100">
+            <h4 class="card-header">SQL Queries 3</h4>
+            <img class="SQL Queries 3" src="c.jpg" alt="SQL Queries 3">
+            <div class="card-body">
+              <p class="card-text">Show the top 10 TV series (more than 1 season) which most average ratings.</p>
+              <p class="card-text">
+                Statement:
+                </br>SELECT DISTINCT tb.primaryTitle  
+                </br>FROM Episode e  
+                </br>INNER JOIN Title_basic tb ON e.parentTconst=tb.tconst 
+                </br>WHERE e.seasonNUMBER>1
+                </br>LIMIT 10;</p>
+              </div>
+            </div>
+        </div>
+        <div class="col-lg-4 mb-4">
+            <div class="card h-100">
+                <h4 class="card-header">SQL Queries 4</h4>
+                <img class="SQL Queries 4" src="d1.jpg" alt="SQL Queries 4">
+                <div class="card-body">
+                  <p class="card-text">You need to design at least FOUR more queries which satisfy use aggregate functions, “group by” and “order by”.</p>
+                  <p class="card-text">
+                    Statement:
+                    </br>SELECT primaryName 
+                    </br>FROM Name_basic  
+                    </br>WHERE deathYEar='NULL'
+                    </br>GROUP BY primaryName
+                    </br>LIMIT 10;</p>
+                </div>
+              </div>
+          </div>
+          <div class="col-lg-4 mb-4">
+              <div class="card h-100">
+                  <h4 class="card-header">SQL Queries 5</h4>
+                  <img class="SQL Queries 5" src="d2.jpg" alt="SQL Queries 5">
+                  <div class="card-body">
+                    <p class="card-text">You need to design at least FOUR more queries which satisfy use set operations.</p>
+                    <p class="card-text">
+                      Statement:
+                      </br>SELECT primaryName 
+                      </br>FROM Name_basic
+                      </br>UNION
+                      </br>SELECT title  
+                      </br>FROM Title_akas tb.primaryTitle
+                      </br>GROUP BY title 
+                      </br>LIMIT 10;</p>
+                  </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <h4 class="card-header">SQL Queries 6</h4>
+                    <img class="SQL Queries 6" src="d3.jpg" alt="SQL Queries 6">
+                    <div class="card-body">
+                      <p class="card-text">You need to design at least FOUR more queries which satisfy use nested/sub queries (either in SELECT clause, FROM clause or WHERE clause).</p>
+                      <p class="card-text">
+                        Statement:
+                        </br>SELECT primaryName 
+                        </br>FROM Title_basics
+                        </br>WHERE startYear = (SELECT CEIL(AVG(startYear)) FROM Title_basics WHERE startYear LIKE '19%')e 
+                        </br>LIMIT 10;</p>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-lg-4 mb-4">
+                  <div class="card h-100">
+                      <h4 class="card-header">SQL Queries 7</h4>
+                      <img class="SQL Queries 7" src="d4.jpg" alt="SQL Queries 7">
+                      <div class="card-body">
+                        <p class="card-text">You need to design at least FOUR more queries which satisfy use JOIN operations.</p>
+                        <p class="card-text">
+                          Statement:
+                          </br>SELECT DISTINCT(primaryTitle), language
+                          </br>FROM Title_basic tb INNER JOIN Title_akas ON tb.tconst=ta.tconst
+                          </br>WHERE primaryTitle LIKE 'Alien%'
+                          </br>LIMIT 10;</p>
+                      </div>
+                    </div>
+                </div>
+      </div>
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; IMDb G7 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="project/jquery/jquery.min.js"></script>
+  <script src="project/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
