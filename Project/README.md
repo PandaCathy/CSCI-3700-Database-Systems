@@ -1,7 +1,7 @@
 #IMDB project
 This is a group project with my classmate.
 
-**Please do use my example for your work or your company work.**
+**Please do not use my example for your work or your company work.**
 
 This is a website that connect to the local database. Search the movie name and it will show the detail of the movie.
 
