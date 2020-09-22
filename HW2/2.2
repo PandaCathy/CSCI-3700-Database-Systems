@@ -1,0 +1,38 @@
+import java.util.*;
+import java.sql.*;
+import java.util.Properties;
+
+class tCredits{
+	public static void main(String args[]){
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+			Properties p = new Properties();
+			// Login infomation to access the database
+			p.put("user", "stu26");
+			p.put("password", "Mystu2626");
+			// Connecting to the database
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/stu26_db",p);
+
+			// Create a Scanner object
+			Scanner in = new Scanner(System.in);
+			System.out.print("Please enter the name of the instructor: ");
+			// Read user input
+			String instructorName = in.nextLine();
+
+			PreparedStatement pstmt = con.prepareStatement("select total_number (?), name from instructor");
+			pstmt.setString(1, instructorName);
+			ResultSet rs=pstmt.executeQuery();
+			if (rs.next()){
+				// Print out result from database
+				System.out.println("The total number of credit hours of " + instructorName + " is " + rs.getInt(1)) ;
+			}
+        
+				rs.close();
+				con.close();
+
+			}
+			// Error
+			catch(Exception e){
+				System.out.println(e);}
+		}
+}
