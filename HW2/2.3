@@ -1,0 +1,46 @@
+import java.util.*;
+import java.sql.*;
+import java.util.Properties;
+
+class compare{
+	public static void main(String args[]){
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+			Properties p = new Properties();
+			// Login infomation to access the database
+			p.put("user", "stu26");
+			p.put("password", "Mystu2626");
+			// Connecting to the database
+			Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/stu26_db",p);
+      
+		int budget, avgerageSalary;
+
+			// Create a Scanner object
+			Scanner in = new Scanner(System.in);
+			System.out.print("Please enter the name of the department: ");
+			// Read user input
+			String departmentName = in.nextLine();
+
+			PreparedStatement pstmt = con.prepareStatement("call compare_proc(?)");
+			pstmt.setString(1, departmentName);
+			ResultSet rs=pstmt.executeQuery();
+			if (rs.next()){
+				budget = rs.getInt(2);
+				avgerageSalary=rs.getInt(3);
+      
+				// Print out result
+				System.out.println("Name   Budget   Salary   Hire or Not");
+				System.out.print(rs.getString(1)+"  " + rs.getInt(2)+ "    " + rs.getInt(3)+ "    ");
+				System.out.print(budget >= avgerageSalary);
+				System.out.println("\n");
+			}
+        
+				rs.close();
+				con.close();
+
+			}
+			// Error
+			catch(Exception e){
+				System.out.println(e);}
+		}
+}
